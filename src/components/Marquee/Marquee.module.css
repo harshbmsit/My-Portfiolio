@@ -1,0 +1,27 @@
+.marqueeContainer {
+  width: 100vw;
+  overflow: hidden;
+  background-color: #e5e5e5; /* Off-grayish white */
+  color: #050505;
+  padding: 1.2rem 0;
+  border-top: 5.5px solid #111111;
+  border-bottom: 5.5px solid #111111;
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+  position: relative;
+  z-index: 10;
+}
+
+.marqueeTrack {
+  display: flex;
+  white-space: nowrap;
+  width: max-content;
+}
+
+.marqueeText {
+  font-size: 1.4rem;
+  letter-spacing: 0.2em;
+  padding-right: 2rem;
+  font-style: italic;
+}

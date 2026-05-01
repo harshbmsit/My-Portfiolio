@@ -3,6 +3,7 @@
 import React, { useState } from 'react';
 import { Barlow_Condensed, Space_Mono, Inter } from 'next/font/google';
 import { FiArrowRight, FiGithub, FiLinkedin, FiInstagram, FiDownload, FiZap } from 'react-icons/fi';
+import Magnetic from '../Magnetic/Magnetic';
 import styles from './ContactFooter.module.css';
 
 const barlow = Barlow_Condensed({
@@ -129,48 +130,43 @@ const ContactFooter: React.FC = () => {
 
             {/* Social buttons */}
             <div className={styles.socialRow}>
-              <a
-                href={CONTACT_INFO.github}
-                target="_blank"
-                rel="noopener noreferrer"
-                className={styles.socialBtn}
-                aria-label="GitHub"
-              >
-                <FiGithub />
-              </a>
-              <a
-                href={CONTACT_INFO.linkedin}
-                target="_blank"
-                rel="noopener noreferrer"
-                className={styles.socialBtn}
-                aria-label="LinkedIn"
-              >
-                <FiLinkedin />
-              </a>
-              <a
-                href={CONTACT_INFO.instagram}
-                target="_blank"
-                rel="noopener noreferrer"
-                className={styles.socialBtn}
-                aria-label="Instagram"
-              >
-                <FiInstagram />
-              </a>
+              <Magnetic>
+                <a
+                  href={CONTACT_INFO.github}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={styles.socialBtn}
+                  aria-label="GitHub"
+                >
+                  <FiGithub />
+                </a>
+              </Magnetic>
+              <Magnetic>
+                <a
+                  href={CONTACT_INFO.linkedin}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={styles.socialBtn}
+                  aria-label="LinkedIn"
+                >
+                  <FiLinkedin />
+                </a>
+              </Magnetic>
+              <Magnetic>
+                <a
+                  href={CONTACT_INFO.instagram}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={styles.socialBtn}
+                  aria-label="Instagram"
+                >
+                  <FiInstagram />
+                </a>
+              </Magnetic>
             </div>
 
             {/* Thick rule */}
             <div className={styles.socialRule}></div>
-
-            {/* GET RESUME button */}
-            <a
-              href={CONTACT_INFO.resume}
-              target="_blank"
-              rel="noopener noreferrer"
-              download
-              className={`${styles.resumeBtn} ${barlow.className}`}
-            >
-              GET RESUME ↓
-            </a>
           </div>
         </div>
 

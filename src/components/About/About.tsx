@@ -1,5 +1,8 @@
+"use client";
+
 import React from 'react';
 import { Space_Mono, Barlow_Condensed, Inter } from 'next/font/google';
+import { motion } from 'framer-motion';
 import styles from './About.module.css';
 
 const spaceMono = Space_Mono({
@@ -20,7 +23,14 @@ const inter = Inter({
 
 const About: React.FC = () => {
   return (
-    <section className={styles.aboutWrapper}>
+    <motion.section 
+      id="about" 
+      className={styles.aboutWrapper}
+      initial={{ opacity: 0, y: 50 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.8 }}
+      viewport={{ once: true, amount: 0.2 }}
+    >
       <div className={styles.aboutCard}>
         {/* Left Column */}
         <div className={styles.leftColumn}>
@@ -47,41 +57,23 @@ const About: React.FC = () => {
 
           <hr className={styles.mainDivider} />
 
-          {/* Info Grid */}
-          <div className={styles.infoGrid}>
-            {/* Column 1 */}
-            <div className={styles.infoColumn}>
-              <div className={styles.categoryRow}>
-                <span className={`${styles.mainLabel} ${barlow.className}`}>01. AUTOMATION</span>
-                <span className={`${styles.subLabel} ${spaceMono.className}`}>// OPSORA</span>
-              </div>
-              <p className={`${styles.description} ${inter.className}`}>
-                Engineering <strong><em>Opsora Workflow Engine</em></strong>: A custom automation suite designed to eliminate operational bottlenecks in high-growth studio environments.
-              </p>
-            </div>
-
-            {/* Column 2 */}
-            <div className={styles.infoColumn}>
-              <div className={styles.categoryRow}>
-                <span className={`${styles.mainLabel} ${barlow.className}`}>02. INTELLIGENCE</span>
-                <span className={`${styles.subLabel} ${spaceMono.className}`}>// RESEARCH</span>
-              </div>
-              <p className={`${styles.description} ${inter.className}`}>
-                Developing <strong><em>Agentic Context Mapping</em></strong> with LLMs to interpret complex system architectures and provide real-time optimization strategies.
-              </p>
-            </div>
+          {/* Text Content */}
+          <div className={styles.textContent}>
+            <p className={`${styles.description} ${inter.className}`}>
+              I like building interfaces that don’t just look good, but feel intuitive, fast, and alive. My focus is on frontend development—crafting smooth, responsive experiences that make people pause and notice the details.
+            </p>
+            <p className={`${styles.description} ${inter.className}`}>
+              I work at the intersection of design and logic, where creativity meets performance. From subtle micro-interactions to bold UI concepts, I enjoy creating interfaces that feel fluid, dynamic, and just a little unexpected.
+            </p>
+            <p className={`${styles.description} ${inter.className}`}>
+              I’m constantly experimenting, learning, and pushing my limits to build better, faster, and smarter interfaces. If it’s ambitious or pushes the boundaries of the web—I’m in.
+            </p>
           </div>
 
-          {/* Status Bar */}
-          <div className={styles.statusBar}>
-            <div className={styles.pulseDot}></div>
-            <span className={`${styles.statusText} ${spaceMono.className}`}>
-              CURRENT STATUS: OPERATIONAL // BENGALURU, INDIA
-            </span>
-          </div>
+
         </div>
       </div>
-    </section>
+    </motion.section>
   );
 };
 

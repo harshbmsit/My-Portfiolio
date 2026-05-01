@@ -117,39 +117,11 @@
   margin-bottom: 2rem;
 }
 
-.infoGrid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 0 2.5rem;
-  margin-bottom: 2rem;
-}
-
-.infoColumn {
+.textContent {
   display: flex;
   flex-direction: column;
-}
-
-.categoryRow {
-  display: inline-flex;
-  align-items: baseline;
-  gap: 0.5rem;
-  margin-bottom: 0.75rem;
-}
-
-.mainLabel {
-  font-size: 1.4rem;
-  font-weight: 700;
-  font-style: italic;
-  color: #ffffff;
-  text-transform: uppercase;
-}
-
-.subLabel {
-  font-size: 0.7rem;
-  color: #666666;
-  letter-spacing: 0.1em;
-  align-self: center;
-  text-transform: uppercase;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
 }
 
 .description {
@@ -165,36 +137,7 @@
   color: #ffffff;
 }
 
-/* Status Bar */
-.statusBar {
-  background: #161616;
-  border: 1px solid #2a2a2a;
-  border-radius: 4px;
-  padding: 0.85rem 1.2rem;
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-}
 
-.pulseDot {
-  width: 11px; /* 10 * 1.1 */
-  height: 11px;
-  border-radius: 50%;
-  background: #4ade80;
-  animation: pulse 2s ease-in-out infinite;
-}
-
-@keyframes pulse {
-  0%, 100% { opacity: 1; transform: scale(1); }
-  50% { opacity: 0.5; transform: scale(0.85); }
-}
-
-.statusText {
-  font-size: 0.65rem;
-  letter-spacing: 0.2em;
-  color: #aaaaaa;
-  text-transform: uppercase;
-}
 
 @media (max-width: 1024px) {
   .aboutCard {
@@ -204,10 +147,5 @@
   
   .leftColumn {
     margin-bottom: 3rem;
-  }
-  
-  .infoGrid {
-    grid-template-columns: 1fr;
-    gap: 2rem;
   }
 }

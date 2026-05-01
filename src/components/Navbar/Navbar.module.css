@@ -36,14 +36,35 @@
   display: flex;
   align-items: center;
   text-transform: uppercase;
-  font-style: italic; /* Match image style */
+  /* Use skew to get slanted text without the curly italic serif glyphs */
+  transform: skewX(-12deg);
+  transform-origin: bottom left;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); /* Buttery smooth animation */
 }
 
 .bolt {
-  font-size: 0.9rem;
-  margin-left: 2.75px;
+  margin-left: 6px;
   position: relative;
-  top: -2.75px; /* Slight lift for editorial look */
+  top: -2px;
+  display: flex;
+  align-items: center;
+}
+
+.logoSymbol {
+  font-size: 1.3rem;
+  color: #000000;
+  animation: slowSpin 15s linear infinite;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+@keyframes slowSpin {
+  from { transform: rotate(0deg) scale(1); }
+  to { transform: rotate(360deg) scale(1); }
+}
+
+@keyframes rapidSpin {
+  from { transform: rotate(0deg) scale(1.4); }
+  to { transform: rotate(360deg) scale(1.4); }
 }
 
 .logoLine2 {
@@ -51,7 +72,26 @@
   font-weight: 800;
   color: #000000;
   text-transform: uppercase;
-  /* Removed underline as requested */
+  transform: skewX(-12deg); /* Initially slanted like HARSH */
+  transform-origin: bottom left;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Hover effects when hovering over the logo container */
+.logo:hover .logoLine1 {
+  font-weight: 900; /* Harsh gets bolder */
+}
+
+.logo:hover .logoSymbol {
+  animation: rapidSpin 2s linear infinite;
+  color: #33ccff; /* Cyber neon cyan */
+  filter: drop-shadow(0px 0px 6px rgba(51, 204, 255, 0.6));
+}
+
+.logo:hover .logoLine2 {
+  transform: skewX(0deg); /* Gupta straightens up */
+  text-decoration: underline;
+  text-underline-offset: 6px; /* A bit more breathing room for the straight T */
 }
 
 .rightSection {
@@ -71,15 +111,19 @@
 .navLink {
   font-size: 0.7rem;
   letter-spacing: 0.15em;
-  font-weight: 700;
+  font-weight: 500; /* Initial non-bold weight */
   color: #000000;
   text-decoration: none;
   text-transform: uppercase;
-  transition: color 0.2s ease;
+  transition: all 0.2s ease; /* Ensure all properties transition smoothly */
 }
 
 .navLink:hover {
-  color: #666666;
+  color: #000000;
+  font-weight: 700; /* Uses the newly imported bold font face */
+  text-decoration: underline;
+  text-decoration-thickness: 3px; /* Makes the underline much thicker */
+  text-underline-offset: 4px;
 }
 
 .separator {
@@ -102,11 +146,22 @@
   font-size: 1rem;
   display: flex;
   align-items: center;
-  transition: transform 0.2s ease;
+  /* Bouncy cubic-bezier for the bubble effect */
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.iconLink svg {
+  transition: stroke-width 0.3s ease;
 }
 
 .iconLink:hover {
-  transform: translateY(-2px);
+  /* Jump up and scale slightly for bubble effect */
+  transform: translateY(-4px) scale(1.15);
+}
+
+.iconLink:hover svg {
+  /* Feather icons use strokes; increasing stroke-width makes them bold */
+  stroke-width: 3px;
 }
 
 .resumeBtn {

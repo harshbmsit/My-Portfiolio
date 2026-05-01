@@ -1,7 +1,10 @@
+"use client";
+
 import React from 'react';
 import Image from 'next/image';
 import { Barlow_Condensed, Space_Mono, Inter } from 'next/font/google';
 import { FiExternalLink } from 'react-icons/fi';
+import { motion } from 'framer-motion';
 import styles from './Projects.module.css';
 
 const barlow = Barlow_Condensed({
@@ -22,34 +25,33 @@ const inter = Inter({
 
 const PROJECTS = [
   {
-    id: 'project-one',
-    name: 'SHELLY',
-    description: 'A custom automation suite designed to eliminate operational bottlenecks in high-growth studio environments.',
-    image: '/images/project1.png',
-    tags: ['PYTHON', 'FASTAPI', 'POSTGRESQL'],
-    href: '/projects#project-one',
+    id: 'project-verisafe',
+    name: 'VERISAFE',
+    description: 'A platform to secure digital assets and verify physical items via NFC syncing and smart scanning.',
+    image: '/images/verisafe.png',
+    tags: ['NEXT.JS', 'SECURITY', 'NFC'],
+    href: 'https://veri-safe-mu.vercel.app/',
   },
   {
-    id: 'project-two',
-    name: 'AGENTIC AI',
-    description: 'Developing LLM-based systems to interpret complex architectures and provide real-time optimization.',
-    image: '/images/project2.png',
-    tags: ['NEXT.JS', 'RAG', 'LANGCHAIN'],
-    href: '/projects#project-two',
-  },
-  {
-    id: 'project-three',
-    name: 'BACKTEST ENGINE',
-    description: 'Professional financial backtesting chart interface with candlestick graphs and technical indicators.',
-    image: '/images/project3.png',
-    tags: ['PYTHON', 'ML', 'BACKTESTING'],
-    href: '/projects#project-three',
+    id: 'project-nexus',
+    name: 'NEXUS',
+    description: 'An MCP-based server system that connects GitHub, Jira, Slack, and Google Calendar.',
+    image: '/images/nexus_v2.png',
+    tags: ['MCP', 'INTEGRATIONS', 'AUTOMATION'],
+    href: 'https://nexus-production-103d.up.railway.app',
   },
 ];
 
 const Projects: React.FC = () => {
   return (
-    <section className={styles.projectsSection}>
+    <motion.section 
+      id="projects" 
+      className={styles.projectsSection}
+      initial={{ opacity: 0, y: 50 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.8 }}
+      viewport={{ once: true, amount: 0.1 }}
+    >
       {/* Title Row */}
       <div className={styles.titleRow}>
         <div className={`${styles.titleBlock} ${barlow.className}`}>
@@ -79,7 +81,13 @@ const Projects: React.FC = () => {
                 <h3 className={`${styles.projectName} ${barlow.className}`}>
                   {project.name}
                 </h3>
-                <FiExternalLink className={styles.linkIcon} />
+                <a 
+                  href={project.href} 
+                  target={project.href.startsWith('http') ? "_blank" : "_self"} 
+                  rel={project.href.startsWith('http') ? "noopener noreferrer" : ""}
+                >
+                  <FiExternalLink className={styles.linkIcon} />
+                </a>
               </div>
 
               <p className={`${styles.description} ${inter.className}`}>
@@ -97,7 +105,7 @@ const Projects: React.FC = () => {
           </div>
         ))}
       </div>
-    </section>
+    </motion.section>
   );
 };
 
