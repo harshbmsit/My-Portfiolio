@@ -58,7 +58,7 @@
 .projectCard {
   background: #ffffff;
   border: none;
-  border-radius: 2.75px; /* 2px * 1.375 */
+  border-radius: 1.5rem; /* Significantly rounded edges */
   overflow: hidden;
   display: flex;
   flex-direction: column;
