@@ -1,0 +1,267 @@
+.techSection {
+  width: 100%;
+  background-color: #ffffff;
+  padding: 2.5rem 4rem; /* Reduced padding further */
+  box-sizing: border-box;
+}
+
+.headingRow {
+  display: flex;
+  align-items: center;
+  gap: 1.375rem;
+  margin-bottom: 2.75rem;
+}
+
+.verticalBar {
+  width: 5.5px; /* 4px * 1.375 */
+  background: #0a0a0a;
+  align-self: stretch;
+  margin-right: 0.75rem;
+}
+
+.techTitle {
+  display: flex;
+  align-items: center;
+  gap: 1.65rem;
+  margin: 0;
+  line-height: 1;
+}
+
+.techSolid {
+  font-size: clamp(2.5rem, 5vw, 4rem); /* Reduced significantly */
+  font-weight: 900;
+  font-style: italic;
+  color: #0a0a0a;
+}
+
+.techHollow {
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-weight: 900;
+  font-style: italic;
+  color: transparent;
+  -webkit-text-stroke: 2px #0a0a0a; /* Thinner stroke for smaller font */
+}
+
+.mainPanel {
+  width: 100%;
+  max-width: 1732px; /* 1260 * 1.375 */
+  margin: 0 auto;
+  border: 2.75px solid #0a0a0a; /* 2px * 1.375 */
+  background: #ffffff;
+}
+
+.tabSwitcher {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  border-bottom: 2.75px solid #0a0a0a;
+}
+
+.tabCell {
+  padding: 1.375rem 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease;
+  border-right: 2.75px solid #0a0a0a;
+  color: #0a0a0a; /* Explicitly set to black for readability on white bg */
+}
+
+.tabCell:last-child {
+  border-right: none;
+}
+
+.tabCell:hover:not(.activeTab) {
+  background: #f5f5f5;
+}
+
+.activeTab {
+  background: #0a0a0a;
+  color: #ffffff;
+}
+
+.tabLabel {
+  font-size: 0.55rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  font-style: italic;
+  color: #999999;
+}
+
+.activeTab .tabLabel {
+  color: #777777;
+}
+
+.tabName {
+  font-size: 1.4rem; /* Reduced from 1.925rem */
+  font-weight: 800;
+  font-style: italic;
+  text-transform: uppercase;
+  letter-spacing: -0.02em;
+}
+
+.contentPanel {
+  display: grid;
+  grid-template-columns: 420px 1fr; /* Back to original size for density */
+  min-height: 480px; /* Back to original min-height */
+}
+
+.leftCol {
+  padding: 2.75rem;
+  border-right: 2.75px solid #0a0a0a;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.registryBadge {
+  display: inline-block;
+  border: 1.375px solid #0a0a0a;
+  padding: 0.35rem 0.8rem;
+  font-size: 0.6rem;
+  letter-spacing: 0.15em;
+  font-weight: 700;
+  margin-bottom: 2rem;
+  color: #0a0a0a;
+}
+
+.statement {
+  font-size: 1.35rem; /* Reduced from 1.85rem */
+  font-weight: 800;
+  line-height: 1.2;
+  color: #0a0a0a;
+  text-transform: uppercase;
+  margin: 0;
+  letter-spacing: -0.01em;
+}
+
+.bottomContent {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.divider {
+  width: 100%;
+  height: 1.375px;
+  background-color: #dddddd;
+}
+
+.footnote {
+  font-size: 0.65rem;
+  letter-spacing: 0.08em;
+  color: #888;
+  text-transform: uppercase;
+  margin: 0;
+}
+
+.brandName {
+  font-weight: 800;
+  text-decoration: underline;
+  color: #0a0a0a;
+}
+
+.systemLine {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.systemText {
+  font-size: 0.55rem;
+  letter-spacing: 0.15em;
+  color: #cccccc;
+  white-space: nowrap;
+}
+
+.trailingLine {
+  flex: 1;
+  height: 1.375px;
+  background-color: #e0e0e0;
+}
+
+.rightCol {
+  padding: 2.5rem;
+  background: #ffffff;
+}
+
+.techGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+}
+
+.techCell {
+  border: 1.5px solid #d0d0d0; /* Thinner border */
+  padding: 1rem 1rem 0.75rem 1rem; /* Compact padding */
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  position: relative;
+  min-height: 110px; /* Reduced from 150px */
+  transition: border-color 0.2s ease, background 0.2s ease;
+  cursor: default;
+}
+
+.techCell:hover {
+  border-color: #0a0a0a;
+  background: #fafafa;
+}
+
+.ghostIcon {
+  position: absolute;
+  top: 0.75rem;
+  right: 0.75rem;
+  width: 71px; /* 52 * 1.375 */
+  height: 71px;
+  opacity: 0.25; /* Increased base opacity for colorful icons */
+  object-fit: contain;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  filter: none; /* Removed grayscale/brightness filters */
+}
+
+.techCell:hover .ghostIcon {
+  opacity: 0.85; /* Logos become very clear on hover */
+  transform: scale(1.1);
+}
+
+.techName {
+  font-size: 0.9rem; /* Reduced from 1.23rem */
+  font-weight: 500;
+  color: #0a0a0a;
+  position: relative;
+  z-index: 1;
+  letter-spacing: -0.01em;
+}
+
+@media (max-width: 1024px) {
+  .contentPanel {
+    grid-template-columns: 1fr;
+  }
+  
+  .leftCol {
+    border-right: none;
+    border-bottom: 2.75px solid #0a0a0a;
+  }
+  
+  .techGrid {
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  }
+}
+
+@media (max-width: 768px) {
+  .tabSwitcher {
+    grid-template-columns: 1fr;
+  }
+  
+  .tabCell {
+    border-right: none;
+    border-bottom: 2.75px solid #0a0a0a;
+  }
+  
+  .techTitle {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+}

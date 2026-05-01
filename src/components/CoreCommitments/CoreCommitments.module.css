@@ -1,0 +1,179 @@
+/* ─── Color Tokens ───────────────────────────────────────────────── */
+/* --page-bg:        #0d0d0d  */
+/* --panel-bg:       #111111  */
+/* --panel-border:   #2a2a2a  */
+/* --card-hover-bg:  #161616  */
+/* --icon-color:     #444444  */
+/* --title-color:    #ffffff  */
+/* --label-color:    #444444  */
+/* --standard-text:  #888888  */
+/* --outcome-text:   #ffffff  */
+/* --footer-text:    #333333  */
+/* --footer-border:  #1e1e1e  */
+/* --left-bar:       #2a2a2a  */
+/* ─────────────────────────────────────────────────────────────────── */
+
+.section {
+  width: 100%;
+  background-color: #0d0d0d;
+  padding: 0 4rem 6.875rem 4rem; /* 5rem * 1.375 */
+  box-sizing: border-box;
+}
+
+/* ─── Heading ────────────────────────────────────────────────────── */
+.headingRow {
+  display: flex;
+  align-items: baseline;
+  gap: 1.65rem; /* 1.2rem * 1.375 */
+  margin-bottom: 2.75rem; /* 2rem * 1.375 */
+  flex-wrap: wrap;
+}
+
+.headingSolid {
+  font-size: clamp(3.5rem, 7vw, 5.5rem);
+  font-weight: 900;
+  font-style: italic;
+  color: #ffffff;
+  line-height: 1;
+  text-transform: uppercase;
+  margin: 0;
+}
+
+.headingHollow {
+  font-size: clamp(3.5rem, 7vw, 5.5rem);
+  font-weight: 900;
+  font-style: italic;
+  color: transparent;
+  -webkit-text-stroke: 2.5px #ffffff;
+  line-height: 1;
+  text-transform: uppercase;
+  margin: 0;
+}
+
+/* ─── Panel ──────────────────────────────────────────────────────── */
+.panel {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  border: 1.5px solid #2a2a2a;
+  width: 100%;
+  max-width: none; /* full bleed */
+  background: #111111;
+}
+
+/* ─── Card ───────────────────────────────────────────────────────── */
+.card {
+  padding: 2.75rem 2.4rem 2rem 2.4rem; /* 2rem/1.75rem * 1.375 */
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  position: relative;
+  min-height: 480px;
+  transition: background 0.3s ease;
+}
+
+.card:hover {
+  background: #161616;
+}
+
+.cardBorder {
+  border-right: 1.5px solid #2a2a2a;
+}
+
+/* ─── Icon ───────────────────────────────────────────────────────── */
+.icon {
+  font-size: 1.3rem;
+  color: #444444;
+  margin-bottom: 1.7rem;
+  display: flex;
+  align-items: center;
+}
+
+/* ─── Card Title ─────────────────────────────────────────────────── */
+.cardTitle {
+  font-weight: 800;
+  font-style: normal;
+  font-size: 2rem; /* 1.6rem * 1.25 — punchy */
+  color: #ffffff;
+  text-transform: uppercase;
+  line-height: 1.1;
+  letter-spacing: 0.02em;
+  margin: 0 0 2.4rem 0;
+}
+
+/* ─── Sub Block (shared) ─────────────────────────────────────────── */
+.subBlock {
+  border-left: 2px solid #2a2a2a;
+  padding-left: 1.15rem;
+  margin-bottom: 1.7rem;
+}
+
+.outcomeBlock {
+  margin-bottom: auto; /* pushes footer to the bottom */
+}
+
+/* ─── Micro Label ────────────────────────────────────────────────── */
+.microLabel {
+  font-size: 0.52rem;
+  letter-spacing: 0.18em;
+  color: #444444;
+  text-transform: uppercase;
+  margin: 0 0 0.5rem 0;
+}
+
+/* ─── Operating Standard Text ────────────────────────────────────── */
+.standardText {
+  font-size: 0.8rem;
+  color: #888888;
+  line-height: 1.65;
+  margin: 0;
+}
+
+/* ─── Delivered Outcome Text ─────────────────────────────────────── */
+.outcomeText {
+  font-weight: 800;
+  font-style: italic;
+  font-size: 1.3rem;
+  color: #ffffff;
+  text-transform: uppercase;
+  line-height: 1.2;
+  letter-spacing: 0.02em;
+  margin: 0.4rem 0 0 0;
+}
+
+/* ─── Card Footer ────────────────────────────────────────────────── */
+.cardFooter {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 1.5rem;
+  border-top: 1px solid #1e1e1e;
+  margin-top: 2rem;
+}
+
+.refCode {
+  font-size: 0.5rem;
+  letter-spacing: 0.18em;
+  color: #333333;
+  text-transform: uppercase;
+}
+
+.footerDash {
+  font-size: 0.75rem;
+  color: #333333;
+}
+
+/* ─── Responsive ─────────────────────────────────────────────────── */
+@media (max-width: 900px) {
+  .panel {
+    grid-template-columns: 1fr;
+  }
+
+  .cardBorder {
+    border-right: none;
+    border-bottom: 1.5px solid #2a2a2a;
+  }
+
+  .card {
+    min-height: auto;
+  }
+}

@@ -1,0 +1,358 @@
+/* ─── Color Tokens ───────────────────────────────────────────────── */
+/* --dark-bg:      #0d0d0d   */
+/* --light-bg:     #f5f5f5   */
+/* --black:        #0a0a0a   */
+/* --white:        #ffffff   */
+/* --muted:        #888888   */
+/* --border-light: #d0d0d0   */
+/* --border-dark:  #222222   */
+/* ─────────────────────────────────────────────────────────────────── */
+
+.footerWrapper {
+  width: 100%;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   PART 1 — DARK CTA BANNER
+═══════════════════════════════════════════════════════════════ */
+.ctaBanner {
+  background: #111111;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  padding: 0 5.5rem;
+  min-height: 120px;
+  border-top: 1px solid #222222;
+  border-bottom: 1px solid #222222;
+  box-sizing: border-box;
+  gap: 2rem;
+}
+
+.ctaStatement {
+  font-weight: 700;
+  font-size: 13px;
+  color: #ffffff;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  line-height: 1.6;
+  max-width: 600px;
+  margin: 0;
+}
+
+.ctaRight {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 1.7rem;
+  text-decoration: none;
+  color: inherit;
+}
+
+.ctaTextGroup {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.3rem;
+}
+
+.ctaMicroLabel {
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  color: #888888;
+  text-transform: uppercase;
+}
+
+.ctaConnect {
+  font-size: 52px;
+  font-weight: 800;
+  font-style: italic;
+  color: #ffffff;
+  text-transform: uppercase;
+  line-height: 1;
+}
+
+.arrowBox {
+  width: 48px;
+  height: 48px;
+  border: 1.5px solid #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.arrowIcon {
+  font-size: 1.2rem;
+  transition: color 0.2s ease;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   PART 2 — WHITE CONTACT AREA
+═══════════════════════════════════════════════════════════════ */
+.contactArea {
+  background-color: #f0f0f0;
+  background-image: radial-gradient(#d0d0d0 1px, transparent 1px);
+  background-size: 20px 20px;
+  width: 100%;
+  padding: 4.125rem 5.5rem 0 5.5rem;
+  box-sizing: border-box;
+  position: relative;
+  overflow: hidden;
+}
+
+.contactArea::after {
+  content: "";
+  position: absolute;
+  top: -100px;
+  right: -100px;
+  width: 600px;
+  height: 600px;
+  background-image: url('https://images.unsplash.com/photo-1590494165264-1ebe3602eb80?q=80&w=600&auto=format&fit=crop');
+  background-size: cover;
+  opacity: 0.1;
+  pointer-events: none;
+  filter: grayscale(100%);
+  z-index: 0;
+}
+
+.contactGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: start;
+  gap: 2.75rem;
+  position: relative;
+  z-index: 1;
+}
+
+/* ─── Left Column ─────────────────────────────────────────────── */
+.leftCol {
+  display: flex;
+  flex-direction: column;
+}
+
+.chapterBadge {
+  display: inline-block;
+  background: #0a0a0a;
+  color: #ffffff;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  padding: 0.35rem 0.75rem;
+  border-radius: 0;
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+  width: fit-content;
+}
+
+.nameHeading {
+  font-family: Impact, sans-serif;
+  font-weight: normal;
+  font-style: italic;
+  font-size: 130px;
+  color: #0a0a0a;
+  text-transform: uppercase;
+  line-height: 0.92;
+  letter-spacing: -0.01em;
+  margin: 0 0 0.5rem 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.nameLine {
+  display: block;
+}
+
+.nameRule {
+  width: 100%;
+  height: 5px;
+  background: #0a0a0a;
+  margin-bottom: 1.5rem;
+  margin-top: 0.5rem;
+}
+
+.inquiriesBlock {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.inquiriesLabel {
+  font-weight: 700;
+  font-size: 12px;
+  letter-spacing: 0.2em;
+  color: #0a0a0a;
+  text-transform: uppercase;
+}
+
+.emailLink {
+  font-weight: 400;
+  font-size: 28px;
+  color: #0a0a0a;
+  text-decoration: none;
+  transition: text-decoration 0.15s ease;
+}
+
+.emailLink:hover {
+  text-decoration: underline;
+}
+
+/* ─── Right Column ────────────────────────────────────────────── */
+.rightCol {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-end;
+  padding-top: 6rem;
+  gap: 1rem;
+}
+
+.roleLine {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.zapIcon {
+  font-size: 0.65rem;
+  color: #888888;
+  flex-shrink: 0;
+}
+
+.roleText {
+  font-size: 11px;
+  letter-spacing: 0.15em;
+  color: #888888;
+  text-transform: uppercase;
+}
+
+.tagline {
+  font-weight: 700;
+  font-size: 14px;
+  color: #0a0a0a;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  margin: 0;
+}
+
+.socialRow {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.socialBtn {
+  width: 44px;
+  height: 44px;
+  border: 1.5px solid #0a0a0a;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #0a0a0a;
+  font-size: 1rem;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.socialBtn:hover {
+  background: #0a0a0a;
+  color: #ffffff;
+}
+
+.socialRule {
+  width: 100%;
+  max-width: 400px;
+  height: 4px;
+  background: #0a0a0a;
+  margin-top: 1rem;
+  margin-bottom: 2rem;
+}
+
+.resumeBtn {
+  background: #0a0a0a;
+  color: #ffffff;
+  font-weight: 700;
+  font-size: 18px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  width: 320px;
+  height: 70px;
+  padding: 0;
+  border: none;
+  border-radius: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background 0.2s ease;
+}
+
+.resumeBtn:hover {
+  background: #222222;
+}
+
+.downloadIcon {
+  font-size: 1rem;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   PART 3 — FOOTER BAR
+═══════════════════════════════════════════════════════════════ */
+.footerBar {
+  border-top: 1px solid #0a0a0a;
+  padding: 1.7rem 5.5rem;
+  margin-top: 4rem;
+  margin-left: -5.5rem;
+  margin-right: -5.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: transparent;
+}
+
+.footerItem {
+  font-size: 11px;
+  letter-spacing: 0.15em;
+  color: #0a0a0a;
+  text-transform: uppercase;
+}
+
+/* ─── Responsive ─────────────────────────────────────────────── */
+@media (max-width: 900px) {
+  .ctaBanner {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    padding: 2rem 2rem;
+    min-height: auto;
+  }
+
+  .ctaRight {
+    justify-content: flex-start;
+  }
+
+  .contactGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .rightCol {
+    padding-top: 1rem;
+  }
+
+  .resumeBtn {
+    align-self: flex-start;
+  }
+
+  .footerBar {
+    flex-direction: column;
+    gap: 0.75rem;
+    text-align: center;
+  }
+
+  .contactArea {
+    padding: 2.5rem 2rem 0 2rem;
+  }
+}
