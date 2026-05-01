@@ -207,7 +207,7 @@
   }
   
   .leftSide {
-    padding: 10vh 2rem 5vh 15vw;
+    padding: 10vh 2rem 5vh 5vw;
     height: auto;
     align-items: flex-start;
   }
@@ -227,6 +227,43 @@
   }
   
   .mainHeading {
-    font-size: clamp(5rem, 15vw, 8rem);
+    font-size: clamp(4rem, 12vw, 8rem);
+  }
+}
+
+@media (max-width: 768px) {
+  .verticalTextWrapper {
+    display: none; /* Hide vertical text on mobile to reclaim space */
+  }
+  
+  .leftSide {
+    padding: 10vh 1.5rem 5vh 1.5rem;
+  }
+  
+  .mainHeading {
+    font-size: clamp(4.5rem, 23vw, 7rem); /* Huge text like reference */
+    line-height: 0.85;
+  }
+  
+  .badgeRow {
+    flex-direction: column;
+    align-items: stretch; /* Stretch badge to full width */
+    gap: 1.5rem;
+    width: 100%;
+    margin-top: 1rem;
+  }
+
+  .badge {
+    text-align: center; /* Center text inside the stretched box */
+    font-size: 1.2rem;
+    padding: 1rem;
+  }
+
+  .stackedInfo {
+    align-items: flex-start;
+  }
+  
+  .location {
+    font-size: 1rem; /* Make location text slightly larger and clearer */
   }
 }

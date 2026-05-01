@@ -182,3 +182,11 @@
   .startBtn { font-size: 1.2rem; padding: 0.8rem 2rem; }
   .fallingWord { font-size: 1.2rem; }
 }
+
+.hiddenInput {
+  position: absolute;
+  top: -9999px;
+  left: -9999px;
+  opacity: 0;
+  pointer-events: none;
+}

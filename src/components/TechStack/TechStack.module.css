@@ -286,4 +286,8 @@
     align-items: center;
     gap: 0.5rem;
   }
+
+  .techSolid, .techHollow {
+    font-size: clamp(2rem, 8vw, 3rem);
+  }
 }

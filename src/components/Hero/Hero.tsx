@@ -64,7 +64,7 @@ const Hero: React.FC = () => {
           initial={{ scale: 0.9, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
           transition={{ duration: 1, delay: 0.3 }}
-          style={{ y: yParallax }}
+          style={{ y: yParallax, willChange: "transform" }}
         >
           <Image 
             src="/images/hero-portrait.jpg" 

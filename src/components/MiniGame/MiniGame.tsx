@@ -35,18 +35,25 @@ const MiniGame: React.FC = () => {
     stateRef.current = { isPlaying, isGameOver, score, words };
   }, [isPlaying, isGameOver, score, words]);
 
+  const inputRef = useRef<HTMLInputElement>(null);
+
   const startGame = () => {
     setIsPlaying(true);
     setIsGameOver(false);
     setScore(0);
     setLives(3);
     setWords([]);
+    // Focus the hidden input to bring up the mobile keyboard
+    setTimeout(() => {
+      inputRef.current?.focus();
+    }, 50);
   };
 
   const endGame = useCallback(() => {
     setIsPlaying(false);
     setIsGameOver(true);
     setWords([]);
+    inputRef.current?.blur();
   }, []);
 
   const handleMiss = useCallback((id: number) => {
@@ -64,12 +71,11 @@ const MiniGame: React.FC = () => {
   useEffect(() => {
     if (!isPlaying || isGameOver) return;
     
-    // Spawn gets faster as score increases
     const spawnRate = Math.max(800, 2500 - score * 60);
     
     const interval = setInterval(() => {
       const text = KEYWORDS[Math.floor(Math.random() * KEYWORDS.length)];
-      const x = Math.random() * 70 + 5; // Safe padding on edges
+      const x = Math.random() * 70 + 5; 
       const duration = Math.max(3000, 8000 - score * 150); 
       
       setWords(prev => [...prev, { id: Date.now(), text, typed: "", x, duration }]);
@@ -78,55 +84,71 @@ const MiniGame: React.FC = () => {
     return () => clearInterval(interval);
   }, [isPlaying, isGameOver, score]);
 
-  // Keyboard loop
+  // Core typing logic extracted for both physical and virtual keyboards
+  const processKey = useCallback((keyInput: string) => {
+    const { isPlaying, isGameOver } = stateRef.current;
+    if (!isPlaying || isGameOver) return;
+    
+    const key = keyInput.toUpperCase();
+    if (!/^[A-Z]$/.test(key)) return;
+    
+    setWords(currentWords => {
+      const targetedWord = currentWords.find(w => w.typed.length > 0);
+      
+      if (targetedWord) {
+        const nextChar = targetedWord.text[targetedWord.typed.length];
+        if (key === nextChar) {
+          const newTyped = targetedWord.typed + key;
+          if (newTyped === targetedWord.text) {
+            setScore(s => s + 1);
+            return currentWords.filter(w => w.id !== targetedWord.id);
+          } else {
+            return currentWords.map(w => w.id === targetedWord.id ? { ...w, typed: newTyped } : w);
+          }
+        }
+        return currentWords;
+      } else {
+        const matchingWords = currentWords.filter(w => w.text.startsWith(key));
+        if (matchingWords.length > 0) {
+          const target = matchingWords.reduce((oldest, current) => current.id < oldest.id ? current : oldest);
+          return currentWords.map(w => w.id === target.id ? { ...w, typed: key } : w);
+        }
+        return currentWords;
+      }
+    });
+  }, []);
+
+  // Keyboard loop for PC
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
-      const { isPlaying, isGameOver, words } = stateRef.current;
-      if (!isPlaying || isGameOver) return;
-      
-      // Ignore shortcuts
       if (e.ctrlKey || e.metaKey || e.altKey || e.key.length > 1) return;
-      
-      const key = e.key.toUpperCase();
-      if (!/^[A-Z]$/.test(key)) return;
-      
-      setWords(currentWords => {
-        // Are we locked onto a word?
-        const targetedWord = currentWords.find(w => w.typed.length > 0);
-        
-        if (targetedWord) {
-          const nextChar = targetedWord.text[targetedWord.typed.length];
-          if (key === nextChar) {
-            const newTyped = targetedWord.typed + key;
-            if (newTyped === targetedWord.text) {
-              setScore(s => s + 1);
-              return currentWords.filter(w => w.id !== targetedWord.id);
-            } else {
-              return currentWords.map(w => w.id === targetedWord.id ? { ...w, typed: newTyped } : w);
-            }
-          }
-          return currentWords;
-        } else {
-          // Find lowest word that starts with this letter
-          const matchingWords = currentWords.filter(w => w.text.startsWith(key));
-          if (matchingWords.length > 0) {
-            const target = matchingWords.reduce((oldest, current) => current.id < oldest.id ? current : oldest);
-            return currentWords.map(w => w.id === target.id ? { ...w, typed: key } : w);
-          }
-          return currentWords;
-        }
-      });
+      if (e.key === 'Unidentified') return; // Ignore mobile virtual keys here, handled by input
+      processKey(e.key);
     };
 
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, []); 
+  }, [processKey]); 
+
+  // Mobile virtual keyboard handler
+  const handleMobileInput = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const val = e.target.value;
+    if (val.length > 0) {
+      processKey(val[val.length - 1]);
+    }
+  };
+
+  const handleContainerClick = () => {
+    if (isPlaying) {
+      inputRef.current?.focus();
+    }
+  };
 
   return (
     <section className={styles.gameSection}>
       <div className={styles.header}>
         <h2 className={`${styles.title} ${barlow.className}`}>
-          CYBER_BREACH
+          CYBER BREACH
         </h2>
         <div className={`${styles.stats} ${spaceMono.className}`}>
           <span>DECRYPTED:&nbsp;{score.toString().padStart(3, '0')}</span>
@@ -134,7 +156,21 @@ const MiniGame: React.FC = () => {
         </div>
       </div>
 
-      <div className={styles.gameContainer}>
+      <div className={styles.gameContainer} onClick={handleContainerClick}>
+        
+        {/* Hidden input to capture mobile keyboard */}
+        <input 
+          ref={inputRef}
+          type="text" 
+          className={styles.hiddenInput} 
+          value="" 
+          onChange={handleMobileInput}
+          autoComplete="off"
+          autoCorrect="off"
+          autoCapitalize="off"
+          spellCheck="false"
+        />
+
         {!isPlaying && !isGameOver && (
           <div className={styles.overlay}>
             <p className={`${styles.instructions} ${spaceMono.className}`}>
@@ -177,7 +213,6 @@ const MiniGame: React.FC = () => {
           </div>
         ))}
         
-        {/* Decorative scanning line */}
         <div className={styles.scanline}></div>
       </div>
     </section>
