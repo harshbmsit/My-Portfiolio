@@ -27,7 +27,7 @@ const PROJECTS = [
   {
     id: 'project-verisafe',
     name: 'VERISAFE',
-    description: 'A platform to secure digital assets and verify physical items via NFC syncing and smart scanning.',
+    description: 'A platform to secure digital assets and verify physical items via NFC syncing and smart scanning. It provides a robust vault for high-value items, ensuring authenticity through tamper-proof NFC tags and real-time verification protocols.',
     image: '/images/verisafe.png',
     tags: ['NEXT.JS', 'SECURITY', 'NFC'],
     href: 'https://veri-safe-mu.vercel.app/',
@@ -35,7 +35,7 @@ const PROJECTS = [
   {
     id: 'project-nexus',
     name: 'NEXUS',
-    description: 'An MCP-based server system that connects GitHub, Jira, Slack, and Google Calendar.',
+    description: 'An MCP-based server system that connects GitHub, Jira, Slack, and Google Calendar. It centralizes project updates and notifications, eliminating context switching and keeping teams synchronized across multiple platforms effortlessly.',
     image: '/images/nexus_v2.png',
     tags: ['MCP', 'INTEGRATIONS', 'AUTOMATION'],
     href: 'https://nexus-production-103d.up.railway.app',
@@ -64,7 +64,13 @@ const Projects: React.FC = () => {
       {/* Grid */}
       <div className={styles.projectsGrid}>
         {PROJECTS.map((project) => (
-          <div key={project.id} className={styles.projectCard}>
+          <a 
+            key={project.id} 
+            href={project.href} 
+            target="_blank" 
+            rel="noopener noreferrer"
+            className={styles.projectCard}
+          >
             {/* Image Area */}
             <div className={styles.imageArea}>
               <Image 
@@ -81,13 +87,7 @@ const Projects: React.FC = () => {
                 <h3 className={`${styles.projectName} ${barlow.className}`}>
                   {project.name}
                 </h3>
-                <a 
-                  href={project.href} 
-                  target={project.href.startsWith('http') ? "_blank" : "_self"} 
-                  rel={project.href.startsWith('http') ? "noopener noreferrer" : ""}
-                >
-                  <FiExternalLink className={styles.linkIcon} />
-                </a>
+                <FiExternalLink className={styles.linkIcon} />
               </div>
 
               <p className={`${styles.description} ${inter.className}`}>
@@ -102,7 +102,7 @@ const Projects: React.FC = () => {
                 ))}
               </div>
             </div>
-          </div>
+          </a>
         ))}
       </div>
     </motion.section>

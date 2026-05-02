@@ -178,7 +178,15 @@ const MiniGame: React.FC = () => {
               TYPE THE ENCRYPTION KEYS TO NEUTRALIZE.<br/>
               DO NOT LET THEM BREACH THE FIREWALL.
             </p>
-            <button className={`${styles.startBtn} ${barlow.className}`} onClick={startGame}>
+            <button 
+              type="button"
+              className={`${styles.startBtn} ${barlow.className}`} 
+              onClick={(e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                startGame();
+              }}
+            >
               INITIATE FIREWALL
             </button>
           </div>
@@ -192,7 +200,15 @@ const MiniGame: React.FC = () => {
             <p className={`${styles.finalScore} ${spaceMono.className}`}>
               THREATS NEUTRALIZED: {score}
             </p>
-            <button className={`${styles.startBtn} ${barlow.className}`} onClick={startGame}>
+            <button 
+              type="button"
+              className={`${styles.startBtn} ${barlow.className}`} 
+              onClick={(e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                startGame();
+              }}
+            >
               REBOOT SYSTEM
             </button>
           </div>

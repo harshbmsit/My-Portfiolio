@@ -31,13 +31,15 @@ const TABS = [
     statement: 'DELIVERING PRODUCTION-READY WEB INTERFACES FROM ARCHITECTURE TO DEPLOYMENT.',
     footnote: 'UTILIZING A VERSATILE ARSENAL FOR',
     tech: [
-      { name: 'Python', icon: 'https://cdn.simpleicons.org/python', level: 'PROFICIENT', description: 'primary scripting & automation language' },
-      { name: 'JavaScript', icon: 'https://cdn.simpleicons.org/javascript', level: 'COMPETENT', description: 'dom, async, full browser control' },
-      { name: 'React', icon: 'https://cdn.simpleicons.org/react', level: 'LEARNING', description: 'component architecture, hooks, state' },
-      { name: 'Security learning', icon: 'https://cdn.simpleicons.org/kalilinux', level: 'PROFICIENT', description: 'ctf, recon, exploitation, hardening' },
-      { name: 'C', icon: 'https://cdn.simpleicons.org/c', level: 'COMPETENT', description: 'systems level, memory, pointers' },
-      { name: 'TypeScript', icon: 'https://cdn.simpleicons.org/typescript', level: 'COMPETENT', description: 'typed js, interfaces, generics' },
-      { name: 'Tailwind', icon: 'https://cdn.simpleicons.org/tailwindcss', level: 'LEARNING', description: 'utility-first, rapid ui building' },
+      { name: 'Python', icon: 'https://cdn.simpleicons.org/python/3776AB', level: 'PROFICIENT', description: 'primary scripting & automation language' },
+      { name: 'JavaScript', icon: 'https://cdn.simpleicons.org/javascript/F7DF1E', level: 'COMPETENT', description: 'dom, async, full browser control' },
+      { name: 'HTML5', icon: 'https://cdn.simpleicons.org/html5/E34F26', level: 'COMPETENT', description: 'semantic structure, seo, accessibility' },
+      { name: 'CSS3', icon: 'https://raw.githubusercontent.com/devicons/devicon/master/icons/css3/css3-original.svg', level: 'COMPETENT', description: 'layouts, animations, responsive design' },
+      { name: 'React', icon: 'https://cdn.simpleicons.org/react/61DAFB', level: 'LEARNING', description: 'component architecture, hooks, state' },
+      { name: 'Security learning', icon: 'https://cdn.simpleicons.org/kalilinux/557C94', level: 'PROFICIENT', description: 'ctf, recon, exploitation, hardening' },
+      { name: 'C', icon: 'https://cdn.simpleicons.org/c/A8B9CC', level: 'COMPETENT', description: 'systems level, memory, pointers' },
+      { name: 'TypeScript', icon: 'https://cdn.simpleicons.org/typescript/3178C6', level: 'COMPETENT', description: 'typed js, interfaces, generics' },
+      { name: 'Tailwind', icon: 'https://cdn.simpleicons.org/tailwindcss/06B6D4', level: 'LEARNING', description: 'utility-first, rapid ui building' },
     ],
   },
 ];
@@ -92,7 +94,12 @@ const TechStack: React.FC = () => {
                 <motion.div 
                   key={item.name} 
                   className={styles.techCell}
-                  whileHover={{ scale: 1.05, y: -5, boxShadow: "0px 10px 20px rgba(51, 255, 51, 0.15)" }}
+                  whileHover={{ 
+                    scale: 1.05, 
+                    y: -5, 
+                    boxShadow: "0px 15px 30px rgba(0, 242, 255, 0.25)",
+                    borderColor: "#00f2ff"
+                  }}
                   transition={{ type: 'spring', stiffness: 300, damping: 15 }}
                 >
                   <img 

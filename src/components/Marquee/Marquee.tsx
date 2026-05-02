@@ -11,7 +11,7 @@ const spaceMono = Space_Mono({
   style: ['normal', 'italic'],
 });
 
-const text = "FRONTEND DEVELOPER // UI DESIGNER // AUTOMATION ENGINEER // SYSTEMS ARCHITECT // ";
+const text = "FRONTEND DEVELOPER // UI/UX DESIGNER // INTERACTIVE DEVELOPER  // ";
 
 const Marquee: React.FC = () => {
   return (
