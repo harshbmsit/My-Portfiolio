@@ -11,7 +11,9 @@ const KEYWORDS = [
   "PAYLOAD", "EXPLOIT", "KERNEL", "PROXY", "FIREWALL", 
   "ENCRYPTION", "OVERRIDE", "PROTOCOL", "BREACH", "SYSTEM", 
   "MALWARE", "TROJAN", "ROOTKIT", "BOTNET", "PHISHING", 
-  "BACKDOOR", "SPYWARE", "CIPHER", "INTRUSION", "DATALINK"
+  "BACKDOOR", "SPYWARE", "CIPHER", "INTRUSION", "DATALINK",
+  "DECRYPT", "VULNERABILITY", "SANDBOX", "DEBUGGER", "HASHING",
+  "FIRMWARE", "SEGMENT", "BANDWIDTH", "MAINFRAME", "TERMINAL"
 ];
 
 interface Word {
@@ -28,8 +30,28 @@ const MiniGame: React.FC = () => {
   const [score, setScore] = useState(0);
   const [lives, setLives] = useState(3);
   const [words, setWords] = useState<Word[]>([]);
+  const [personalBests, setPersonalBests] = useState<Record<number, number>>({ 1: 0, 1.5: 0, 2: 0 });
+  const [speedMultiplier, setSpeedMultiplier] = useState(1);
   
-  // Use a ref to access latest state inside the global keyboard event listener
+  useEffect(() => {
+    const savedPBs = localStorage.getItem('cyber-breach-pbs');
+    if (savedPBs) {
+      try {
+        setPersonalBests(JSON.parse(savedPBs));
+      } catch (e) {
+        console.error("Failed to parse PBs", e);
+      }
+    }
+  }, []);
+
+  useEffect(() => {
+    if (score > (personalBests[speedMultiplier] || 0)) {
+      const newPBs = { ...personalBests, [speedMultiplier]: score };
+      setPersonalBests(newPBs);
+      localStorage.setItem('cyber-breach-pbs', JSON.stringify(newPBs));
+    }
+  }, [score, personalBests, speedMultiplier]);
+
   const stateRef = useRef({ isPlaying, isGameOver, score, words });
   useEffect(() => {
     stateRef.current = { isPlaying, isGameOver, score, words };
@@ -43,7 +65,6 @@ const MiniGame: React.FC = () => {
     setScore(0);
     setLives(3);
     setWords([]);
-    // Focus the hidden input to bring up the mobile keyboard
     setTimeout(() => {
       inputRef.current?.focus();
     }, 50);
@@ -71,20 +92,41 @@ const MiniGame: React.FC = () => {
   useEffect(() => {
     if (!isPlaying || isGameOver) return;
     
-    const spawnRate = Math.max(800, 2500 - score * 60);
+    // Adjusted base rate by speed multiplier
+    const spawnRate = Math.max(800, (2500 - score * 60) / speedMultiplier);
     
     const interval = setInterval(() => {
-      const text = KEYWORDS[Math.floor(Math.random() * KEYWORDS.length)];
-      const x = Math.random() * 70 + 5; 
-      const duration = Math.max(3000, 8000 - score * 150); 
-      
-      setWords(prev => [...prev, { id: Date.now(), text, typed: "", x, duration }]);
+      setWords(prev => {
+        const currentCount = prev.length;
+        
+        // Difficulty thresholds
+        let maxWords = 2;
+        let spawnCount = 1;
+        
+        if (score >= 20) {
+          maxWords = 4;
+          spawnCount = Math.floor(Math.random() * 2) + 2; // 2 to 3
+        } else if (currentCount >= maxWords) {
+          return prev;
+        }
+
+        const newWords: Word[] = [];
+        for (let i = 0; i < spawnCount; i++) {
+          if (prev.length + newWords.length >= maxWords) break;
+          
+          const text = KEYWORDS[Math.floor(Math.random() * KEYWORDS.length)];
+          const x = Math.random() * 70 + 5; 
+          const duration = Math.max(2500, (8000 - score * 150) / speedMultiplier); 
+          newWords.push({ id: Date.now() + i, text, typed: "", x, duration });
+        }
+        
+        return [...prev, ...newWords];
+      });
     }, spawnRate);
     
     return () => clearInterval(interval);
-  }, [isPlaying, isGameOver, score]);
+  }, [isPlaying, isGameOver, score, speedMultiplier]);
 
-  // Core typing logic extracted for both physical and virtual keyboards
   const processKey = useCallback((keyInput: string) => {
     const { isPlaying, isGameOver } = stateRef.current;
     if (!isPlaying || isGameOver) return;
@@ -118,11 +160,10 @@ const MiniGame: React.FC = () => {
     });
   }, []);
 
-  // Keyboard loop for PC
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.ctrlKey || e.metaKey || e.altKey || e.key.length > 1) return;
-      if (e.key === 'Unidentified') return; // Ignore mobile virtual keys here, handled by input
+      if (e.key === 'Unidentified') return;
       processKey(e.key);
     };
 
@@ -130,7 +171,6 @@ const MiniGame: React.FC = () => {
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [processKey]); 
 
-  // Mobile virtual keyboard handler
   const handleMobileInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     const val = e.target.value;
     if (val.length > 0) {
@@ -144,13 +184,25 @@ const MiniGame: React.FC = () => {
     }
   };
 
+  const toggleSpeed = () => {
+    setSpeedMultiplier(prev => prev === 1 ? 1.5 : prev === 1.5 ? 2 : 1);
+  };
+
   return (
     <section className={styles.gameSection}>
       <div className={styles.header}>
-        <h2 className={`${styles.title} ${barlow.className}`}>
-          CYBER BREACH
-        </h2>
+        <div className={styles.titleGroup}>
+          <h2 className={`${styles.title} ${barlow.className}`}>
+            CYBER BREACH
+          </h2>
+          <div className={`${styles.scoreboard} ${spaceMono.className}`}>
+            <span>PB:&nbsp;{personalBests[speedMultiplier] || 0}</span>
+          </div>
+        </div>
         <div className={`${styles.stats} ${spaceMono.className}`}>
+          <div className={styles.speedToggle} onClick={toggleSpeed}>
+            SPEED:&nbsp;x{speedMultiplier}
+          </div>
           <span>DECRYPTED:&nbsp;{score.toString().padStart(3, '0')}</span>
           <span className={styles.lives}>INTEGRITY:&nbsp;{'█'.repeat(lives)}{'▒'.repeat(3 - lives)}</span>
         </div>
@@ -158,7 +210,6 @@ const MiniGame: React.FC = () => {
 
       <div className={styles.gameContainer} onClick={handleContainerClick}>
         
-        {/* Hidden input to capture mobile keyboard */}
         <input 
           ref={inputRef}
           type="text" 
@@ -197,9 +248,10 @@ const MiniGame: React.FC = () => {
             <h3 className={`${styles.gameOverTitle} ${barlow.className}`}>
               SYSTEM COMPROMISED
             </h3>
-            <p className={`${styles.finalScore} ${spaceMono.className}`}>
-              THREATS NEUTRALIZED: {score}
-            </p>
+            <div className={`${styles.finalStats} ${spaceMono.className}`}>
+              <p>THREATS NEUTRALIZED: {score}</p>
+              <p>PB (x{speedMultiplier}): {personalBests[speedMultiplier] || 0}</p>
+            </div>
             <button 
               type="button"
               className={`${styles.startBtn} ${barlow.className}`} 
