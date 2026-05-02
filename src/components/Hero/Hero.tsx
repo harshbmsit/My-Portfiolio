@@ -66,13 +66,26 @@ const Hero: React.FC = () => {
           transition={{ duration: 1, delay: 0.3 }}
           style={{ y: yParallax, willChange: "transform" }}
         >
-          <Image 
-            src="/images/hero-portrait.jpg" 
-            alt="Harsh Gupta Portrait" 
-            fill
-            className={styles.portrait}
-            priority
-          />
+          {/* Desktop Portrait */}
+          <div className={styles.desktopImage}>
+            <Image 
+              src="/images/hero-portrait.jpg" 
+              alt="Harsh Gupta Portrait" 
+              fill
+              className={styles.portrait}
+              priority
+            />
+          </div>
+          {/* Mobile Portrait */}
+          <div className={styles.mobileImage}>
+            <Image 
+              src="/images/hero-portrait-mobile.jpg" 
+              alt="Harsh Gupta Portrait Mobile" 
+              fill
+              className={styles.portrait}
+              priority
+            />
+          </div>
         </motion.div>
       </div>
     </motion.section>

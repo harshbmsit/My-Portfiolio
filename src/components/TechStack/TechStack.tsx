@@ -39,7 +39,7 @@ const TABS = [
       { name: 'Security learning', icon: 'https://cdn.simpleicons.org/kalilinux/557C94', level: 'PROFICIENT', description: 'ctf, recon, exploitation, hardening' },
       { name: 'C', icon: 'https://cdn.simpleicons.org/c/A8B9CC', level: 'COMPETENT', description: 'systems level, memory, pointers' },
       { name: 'TypeScript', icon: 'https://cdn.simpleicons.org/typescript/3178C6', level: 'COMPETENT', description: 'typed js, interfaces, generics' },
-      { name: 'Tailwind', icon: 'https://cdn.simpleicons.org/tailwindcss/06B6D4', level: 'LEARNING', description: 'utility-first, rapid ui building' },
+      { name: 'Tailwind', icon: 'https://cdn.simpleicons.org/tailwindcss/06B6D4', level: 'COMPETENT', description: 'utility-first, rapid ui building' },
     ],
   },
 ];

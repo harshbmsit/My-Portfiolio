@@ -190,16 +190,101 @@
   box-shadow: 2.75px 2.75px 0px #000000;
 }
 
+/* Base styles for hamburger (hidden by default) */
+.hamburger {
+  display: none;
+}
+
+@media (max-width: 1024px) {
+  .leftSection {
+    padding-left: 1rem;
+  }
+  .logo {
+    margin-left: 0;
+  }
+}
+
 @media (max-width: 768px) {
   .navbar {
-    padding: 0 1.5rem;
+    padding: 0 1.25rem;
+    height: 65px;
+    justify-content: space-between;
+    gap: 0;
   }
   
-  .centerSection {
-    display: none; /* Mobile menu would go here */
+  .leftSection {
+    padding-left: 0;
+    flex: none;
+    justify-content: flex-start;
   }
-  
+
+  .logo {
+    margin-left: 0;
+  }
+
+  .logoLine1, .logoLine2 {
+    font-size: 1.1rem;
+  }
+
+  .logoSymbol {
+    font-size: 0.8rem;
+  }
+
+  .hamburger {
+    display: flex;
+    font-size: 1.6rem;
+    cursor: pointer;
+    z-index: 2000; /* Extremely high z-index to stay above everything */
+    color: #000000 !important; /* Explicit black */
+    transition: transform 0.3s ease;
+    padding: 0.5rem;
+    margin-right: 0.5rem;
+  }
+
+  .hamburger:hover {
+    transform: scale(1.1);
+  }
+
   .rightSection {
-    gap: 1rem;
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 100%; /* Full width for a cleaner mobile menu */
+    height: 100vh;
+    background-color: #ffffff;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 2.5rem;
+    transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 1000;
+    padding: 2rem;
+  }
+
+  .menuOpen {
+    right: 0 !important;
+  }
+
+  .navLinks {
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .navLink {
+    font-size: 1.3rem;
+    font-weight: 800;
+  }
+
+  .separator {
+    display: none;
+  }
+
+  .icons {
+    margin-right: 0;
+    gap: 1.5rem;
+  }
+
+  .iconLink {
+    font-size: 1.3rem;
   }
 }

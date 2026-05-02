@@ -187,6 +187,18 @@
   z-index: 1;
 }
 
+.desktopImage {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.mobileImage {
+  display: none;
+  width: 100%;
+  height: 100%;
+}
+
 .portrait {
   width: 100%;
   height: 100%;
@@ -200,6 +212,7 @@
     flex-direction: column;
     height: auto;
     min-height: 100vh;
+    padding-top: 80px;
   }
   
   .leftSide, .rightSide {
@@ -207,19 +220,21 @@
   }
   
   .leftSide {
-    padding: 10vh 2rem 5vh 5vw;
+    padding: 5vh 2rem 5vh 5vw;
     height: auto;
     align-items: flex-start;
   }
   
   .rightSide {
-    height: 50vh;
+    height: 40vh;
+    min-height: 300px;
   }
 
   .portraitWrapper {
     width: 100%;
     right: 0;
     height: 100%;
+    position: relative;
   }
 
   .portrait {
@@ -227,43 +242,104 @@
   }
   
   .mainHeading {
-    font-size: clamp(4rem, 12vw, 8rem);
+    font-size: clamp(4rem, 15vw, 9rem);
+  }
+
+  .badgeRow {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
   }
 }
 
 @media (max-width: 768px) {
   .verticalTextWrapper {
-    display: none; /* Hide vertical text on mobile to reclaim space */
+    display: none;
   }
   
+  .heroSection {
+    flex-direction: column;
+    height: auto;
+    padding-top: 70px; /* Account for navbar */
+    background-size: 20px 20px;
+  }
+
   .leftSide {
-    padding: 10vh 1.5rem 5vh 1.5rem;
+    width: 100%;
+    padding: 2rem 1.5rem;
+    height: auto;
+    display: block;
   }
   
   .mainHeading {
-    font-size: clamp(4.5rem, 23vw, 7rem); /* Huge text like reference */
-    line-height: 0.85;
+    font-size: clamp(3rem, 18vw, 5rem);
+    line-height: 0.9;
+    margin-bottom: 2rem;
+    text-align: center;
+    width: 100%;
   }
   
   .badgeRow {
     flex-direction: column;
-    align-items: stretch; /* Stretch badge to full width */
+    align-items: center;
     gap: 1.5rem;
     width: 100%;
-    margin-top: 1rem;
+    text-align: center;
   }
 
   .badge {
-    text-align: center; /* Center text inside the stretched box */
-    font-size: 1.2rem;
-    padding: 1rem;
+    width: 100%;
+    max-width: 300px;
+    text-align: center;
+    font-size: 1rem;
+    padding: 0.8rem;
   }
 
   .stackedInfo {
-    align-items: flex-start;
+    align-items: center;
   }
-  
+
   .location {
-    font-size: 1rem; /* Make location text slightly larger and clearer */
+    font-size: 0.8rem;
+    color: #888;
+  }
+
+  .rightSide {
+    width: 100%;
+    height: auto;
+    padding: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .portraitWrapper {
+    position: relative;
+    width: 100%;
+    max-width: 350px;
+    aspect-ratio: 1 / 1; /* Changed to square for better mobile balance */
+    border: 4px solid #111;
+    background: #ffffff; /* Match image background */
+    overflow: hidden;
+    margin: 0 auto;
+    right: 0;
+    bottom: 0;
+    /* Soft edge blending */
+    mask-image: linear-gradient(to bottom, black 85%, transparent 100%);
+    -webkit-mask-image: linear-gradient(to bottom, black 85%, transparent 100%);
+  }
+
+  .desktopImage {
+    display: none;
+  }
+
+  .mobileImage {
+    display: block;
+  }
+
+  .portrait {
+    object-position: center center;
+    filter: grayscale(1) contrast(1.1);
+    mix-blend-mode: multiply; /* Blends white background of image with container */
   }
 }

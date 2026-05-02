@@ -1,6 +1,8 @@
-import React from 'react';
+"use client";
+
+import React, { useState } from 'react';
 import Link from 'next/link';
-import { FiLinkedin, FiGithub, FiInstagram } from 'react-icons/fi';
+import { FiLinkedin, FiGithub, FiInstagram, FiMenu, FiX } from 'react-icons/fi';
 import { RxCube } from 'react-icons/rx';
 import { Playfair_Display, Josefin_Sans, JetBrains_Mono } from 'next/font/google';
 import Magnetic from '../Magnetic/Magnetic';
@@ -23,6 +25,8 @@ const mono = JetBrains_Mono({
 });
 
 const Navbar: React.FC = () => {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
   return (
     <nav className={styles.navbar}>
       {/* Left Section: Logo */}
@@ -40,12 +44,23 @@ const Navbar: React.FC = () => {
         </div>
       </div>
 
-      {/* Right Section: Links + Icons + Resume */}
-      <div className={styles.rightSection}>
+      {/* Hamburger Icon */}
+      <div className={styles.hamburger} onClick={() => setIsMenuOpen(!isMenuOpen)}>
+        {isMenuOpen ? <FiX /> : <FiMenu />}
+      </div>
+
+      {/* Right Section: Links + Icons */}
+      <div className={`${styles.rightSection} ${isMenuOpen ? styles.menuOpen : ''}`}>
         <div className={`${styles.navLinks} ${josefin.className}`}>
-          <Magnetic strength={20}><Link href="#projects" className={styles.navLink}>PROJECTS</Link></Magnetic>
-          <Magnetic strength={20}><Link href="#about" className={styles.navLink}>ABOUT</Link></Magnetic>
-          <Magnetic strength={20}><Link href="#contact" className={styles.navLink}>CONTACT</Link></Magnetic>
+          <Magnetic strength={20}>
+            <Link href="#projects" className={styles.navLink} onClick={() => setIsMenuOpen(false)}>PROJECTS</Link>
+          </Magnetic>
+          <Magnetic strength={20}>
+            <Link href="#about" className={styles.navLink} onClick={() => setIsMenuOpen(false)}>ABOUT</Link>
+          </Magnetic>
+          <Magnetic strength={20}>
+            <Link href="#contact" className={styles.navLink} onClick={() => setIsMenuOpen(false)}>CONTACT</Link>
+          </Magnetic>
         </div>
 
         <span className={styles.separator}>/</span>
